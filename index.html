@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Arrays en JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Arrays</h1>
+
+        <h3>.push()</h3>
+        <p><strong>Agrega</strong> uno o más elementos <strong>al final</strong> de un array y devuelve la <strong>nueva longitud</strong> del array.</p>
+        <p><em>Código usado: frutas.push("naranja")</em></p>
+        <div id="push"></div>
+
+        <h3>.pop()</h3>
+        <p><strong>Elimina el último elemento</strong> de un array y lo devuelve. <strong>Modifica</strong> el array.</p>
+        <p><em>Código usado: frutas.pop()</em></p>
+        <div id="pop"></div>
+
+        <h3>.shift()</h3>
+        <p><strong>Elimina el primer elemento</strong> de un array y lo devuelve. <strong>Modifica</strong> el array.</p>
+        <p><em>Código usado: frutas.shift()</em></p>
+        <div id="shift"></div>
+
+        <h3>.unshift()</h3>
+        <p><strong>Agrega</strong> uno o más elementos <strong>al inicio</strong> de un array y devuelve la <strong>nueva longitud</strong>.</p>
+        <p><em>Código usado: frutas.unshift("kiwi")</em></p>
+        <div id="unshift"></div>
+
+        <h3>.sort()</h3>
+        <p><strong>Ordena</strong> los elementos de un array <strong>en su lugar</strong> y devuelve el mismo array.</p>
+        <p><em>Código usado: numeros.sort((a, b) => a - b)</em></p>
+        <div id="sort"></div>
+
+        <h3>.reverse()</h3>
+        <p><strong>Invierte</strong> el orden de los elementos del array. El primer elemento pasa a ser el <strong>último</strong>, y viceversa.</p>
+        <p><em>Código usado: numeros.reverse()</em></p>
+        <div id="reverse"></div>
+
+        <h3>.every()</h3>
+        <p><strong>Verifica si todos</strong> los elementos del array cumplen con una condición. Devuelve <strong>true o false</strong>.</p>
+        <p><em>Código usado: edades.every(edad => edad >= 18)</em></p>
+        <div id="every"></div>
+
+        <h3>.some()</h3>
+        <p><strong>Verifica si al menos uno</strong> de los elementos cumple una condición. Devuelve <strong>true o false</strong>.</p>
+        <p><em>Código usado: edades.some(edad => edad < 18)</em></p>
+        <div id="some"></div>
+
+        <h3>.find()</h3>
+        <p><strong>Devuelve el primer elemento</strong> que cumpla una condición. Si no encuentra, devuelve <strong>undefined</strong>.</p>
+        <p><em>Código usado: numerosGrandes.find(num => num > 15)</em></p>
+        <div id="find"></div>
+
+        <h3>.findIndex()</h3>
+        <p><strong>Devuelve el índice</strong> del primer elemento que cumpla una condición. Si no encuentra, devuelve <strong>-1</strong>.</p>
+        <p><em>Código usado: numerosGrandes.findIndex(num => num > 15)</em></p>
+        <div id="findIndex"></div>
+
+        <h3>.map()</h3>
+        <p><strong>Crea un nuevo array</strong> con los resultados de aplicar una función a <strong>cada elemento</strong> del original.</p>
+        <p><em>Código usado: [1, 2, 3].map(num => num * 2)</em></p>
+        <div id="map"></div>
+
+        <h3>.reduce()</h3>
+        <p><strong>Reduce</strong> un array a un <strong>solo valor</strong> usando una función acumuladora.</p>
+        <p><em>Código usado: [1, 2, 3, 4].reduce((acum, actual) => acum + actual, 0)</em></p>
+        <div id="reduce"></div>
+
+        <h3>.filter()</h3>
+        <p><strong>Devuelve un nuevo array</strong> con los elementos que <strong>cumplan una condición</strong>.</p>
+        <p><em>Código usado: [1, 2, 3, 4, 5, 6].filter(num => num % 2 === 0)</em></p>
+        <div id="filter"></div>
+
+
+
+        <h1 class="h1">JSON</h1>
+
+        <h3>JSON.parse()</h3>
+        <p><strong>Convierte el JSON en un objeto de JavaScript:</strong></p>
+        <div id="parse"></div>
+
+        <h3>JSON.stringify()</h3>
+        <p><strong>Convierte el objeto de JavaScript a una cadena JSON:</strong></p>
+        <div id="stringify"></div>
+
+        <h1 class="h1">Clases en JavaScript</h1>
+
+        <h3>Clase Alumno</h3>
+        <div class="info">
+            <p><strong>Descripción:</strong> La clase <strong> Alumno </strong> modela a un alumno con propiedades como nombre, apellidos, fecha de nacimiento, email, ciclo y notas. También tiene métodos para calcular la edad, la media de las notas y mostrar información del alumno.</p>
+        </div>
+        <div class="codigo-block">
+            <pre>
+                <code>
+class Alumno {
+    constructor(nombre, apellidos, fechaNacimiento, email, ciclo, notas) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = new Date(fechaNacimiento);
+        this.email = email;
+        this.ciclo = ciclo;
+        this.notas = notas;
+    }
+
+    calcularEdad() {
+        const hoy = new Date();
+        let edad = hoy.getFullYear() - this.fechaNacimiento.getFullYear();
+        const mesDiferencia = hoy.getMonth() - this.fechaNacimiento.getMonth();
+        if (mesDiferencia < 0 || (mesDiferencia === 0 && hoy.getDate() < this.fechaNacimiento.getDate())) {
+            edad--;
+        }
+        return edad
+    }
+
+    calcularMedia() {
+        const ponderaciones = this.ciclo === "DAM" ? [0.3, 0.2, 0.3, 0.2] : [0.2, 0.4, 0.2, 0.2];
+        return this.notas.reduce((total, nota, i) => total + nota * ponderaciones[i], 0).toFixed(2);
+    }
+
+    toString() {
+        return `${this.nombre} ${this.apellidos}`;
+    }
+
+    infoAlumno() {
+        return `${this.nombre} ${this.apellidos} | Edad: ${this.calcularEdad()} | Ciclo: ${this.ciclo} | Media: ${this.calcularMedia()}`;
+    }
+}
+                </code>
+            </pre>
+        </div>
+    
+    
+    </div>
+</body>
+</html>
